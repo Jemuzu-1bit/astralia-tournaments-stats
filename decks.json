@@ -1,0 +1,12 @@
+[
+  {"id":1,"name":"Athrias, the Chosen One","color":"Verde"},
+  {"id":2,"name":"Eleanor, Guildmaster","color":"Verde"},
+  {"id":3,"name":"Lucrezia, Progenitor of Vampires","color":"Rosso"},
+  {"id":4,"name":"Ivo, Head of the Secret Police","color":"Rosso"},
+  {"id":5,"name":"Meika, Mecha Engineer","color":"Blu"},
+  {"id":6,"name":"Morgan Takehashi, Blue Bolt","color":"Blu"},
+  {"id":7,"name":"Satsuki, Ordinary Student","color":"Rosa"},
+  {"id":8,"name":"Rin, Gloomy Hikikomori","color":"Rosa"},
+  {"id":9,"name":"Jianyi, Prophet of the End","color":"Viola"},
+  {"id":10,"name":"Kadatha, Dimensional Wanderer","color":"Viola"}
+]

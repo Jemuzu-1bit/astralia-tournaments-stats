@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Astralia Tournament Manager</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <div>
+        <p class="eyebrow">TOURNAMENT CONTROL ROOM</p>
+        <h1>Astralia Tournament Manager</h1>
+        <p class="header-subtitle">Gestisci mazzi, ban e risultati del torneo in un unico posto.</p>
+      </div>
+      <div class="live-mark"><span></span> Locale</div>
+    </div>
+  </header>
+
+  <main>
+    <section id="controls">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">CONNESSIONE</p>
+          <h2>Carica torneo</h2>
+        </div>
+        <span class="status-chip">Challonge</span>
+      </div>
+      <div class="control-row">
+        <label>Tournament slug o ID <input id="tourneySlug" placeholder="es. mio-torneo-2026" autocomplete="off"/></label>
+        <button id="fetchBtn"><span aria-hidden="true">↗</span> Carica da Challonge</button>
+        <button id="loadLocalBtn" class="button-secondary"><span aria-hidden="true">↺</span> Carica dati locali</button>
+      </div>
+    </section>
+
+    <section class="saved-tournaments-section">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">TORNEI SALVATI</p>
+          <h2>Seleziona torneo</h2>
+        </div>
+      </div>
+      <div id="savedTournaments" class="saved-tournaments"></div>
+    </section>
+
+    <nav id="pagesNav" aria-label="Navigazione torneo">
+      <button type="button" data-page="participantsPage"><span aria-hidden="true">♙</span> Partecipanti</button>
+      <span id="roundLinks"></span>
+    </nav>
+
+    <section id="participantsPage" class="page active">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">ROSTER</p>
+          <h2>Partecipanti</h2>
+        </div>
+        <span class="section-note">3 mazzi per giocatore</span>
+      </div>
+      <div id="participants"></div>
+    </section>
+
+    <div id="roundPages"></div>
+
+    <section class="data-tools">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">BACKUP</p>
+          <h2>Dati torneo</h2>
+        </div>
+        <span class="section-note">JSON</span>
+      </div>
+      <div class="data-actions">
+        <button id="exportBtn"><span aria-hidden="true">↓</span> Esporta JSON</button>
+        <label class="file-picker">Importa JSON <input type="file" id="importFile" accept="application/json,.json" /></label>
+        <button id="deleteSelectedTournamentBtn" class="button-secondary"><span aria-hidden="true">×</span> Elimina torneo selezionato</button>
+        <button id="clearLocalBtn" class="button-secondary"><span aria-hidden="true">✕</span> Rimuovi tutti i dati</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js?v=12"></script>
+</body>
+</html>

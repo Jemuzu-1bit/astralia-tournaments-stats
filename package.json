@@ -1,0 +1,26 @@
+{
+  "name": "astralia-tournaments-stats",
+  "version": "1.0.0",
+  "description": "Sito minimale per importare partecipanti da Challonge, assegnare per ogni partecipante 3 mazzi da una lista predefinita, e segnare per ogni match i mazzi bannati e quale mazzo ha vinto.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jemuzu-1bit/astralia-tournaments-stats.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Jemuzu-1bit/astralia-tournaments-stats/issues"
+  },
+  "homepage": "https://github.com/Jemuzu-1bit/astralia-tournaments-stats#readme",
+  "devDependencies": {
+    "dotenv": "^16.4.7",
+    "http-server": "^14.1.1"
+  }
+}

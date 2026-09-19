@@ -1,0 +1,1329 @@
+:root {
+  --bg: #07111f;
+  --surface: rgba(12, 28, 48, 0.92);
+  --surface-soft: rgba(19, 39, 63, 0.9);
+
+  --ink: #f4f8ff;
+  --ink-soft: #c5d2e3;
+  --muted: #8294ad;
+
+  --line: rgba(151, 185, 224, 0.16);
+  --line-strong: rgba(151, 185, 224, 0.3);
+
+  --accent: #38bdf8;
+  --accent-hover: #0ea5e9;
+  --accent-soft: rgba(56, 189, 248, 0.13);
+
+  --success: #4ade80;
+  --success-soft: rgba(74, 222, 128, 0.12);
+
+  --danger: #fb7185;
+  --danger-soft: rgba(251, 113, 133, 0.12);
+
+  --warning: #facc15;
+  --warning-soft: rgba(250, 204, 21, 0.12);
+
+  --shadow-sm: 0 8px 22px rgba(0, 0, 0, 0.16);
+  --shadow: 0 18px 50px rgba(0, 0, 0, 0.25);
+
+  --radius-sm: 8px;
+  --radius: 12px;
+  --radius-lg: 16px;
+
+  --max-width: 1120px;
+}
+
+
+/* =========================================================
+   BASE
+   ========================================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+
+  font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 8% 0%, rgba(37, 99, 235, 0.22), transparent 28rem),
+    radial-gradient(circle at 92% 18%, rgba(168, 85, 247, 0.16), transparent 25rem),
+    linear-gradient(145deg, #07111f 0%, #0b1b30 48%, #10152b 100%);
+
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+@font-face {
+  font-family: "Astralia Deck";
+  src: local("Rajdhani"), local("Bahnschrift SemiBold");
+  font-weight: 600 800;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+header {
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(110deg, rgba(5, 14, 28, 0.96), rgba(16, 44, 75, 0.92)),
+    #0b1b30;
+  color: #fff;
+
+  padding: 34px 24px 38px;
+
+  border-bottom: 1px solid rgba(125, 211, 252, 0.25);
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.25);
+}
+
+header::after {
+  position: absolute;
+  right: -8%;
+  bottom: -70px;
+  width: 46%;
+  height: 150px;
+  content: "";
+  background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.18), transparent);
+  transform: rotate(-8deg);
+}
+
+.header-inner {
+  width: 100%;
+  max-width: var(--max-width);
+
+  margin: 0 auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 24px;
+}
+
+header h1 {
+  margin: 4px 0 6px;
+
+  font-family: "Astralia Deck", "Trebuchet MS", sans-serif;
+  font-size: clamp(1.65rem, 3vw, 2.25rem);
+  line-height: 1.15;
+  letter-spacing: 0.025em;
+}
+
+.header-subtitle {
+  margin: 0;
+
+  color: #b8cae0;
+
+  font-size: 0.92rem;
+}
+
+.eyebrow {
+  margin: 0;
+
+  color: var(--muted);
+
+  font-size: 0.68rem;
+  font-weight: 800;
+
+  letter-spacing: 0.13em;
+  line-height: 1.2;
+}
+
+header .eyebrow {
+  color: #8da7bb;
+}
+
+.live-mark {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 8px 11px;
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+
+  color: #c4d1dc;
+  background: rgba(255, 255, 255, 0.05);
+
+  font-size: 0.78rem;
+  font-weight: 600;
+
+  white-space: nowrap;
+}
+
+.live-mark span {
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+
+  background: #4ade80;
+
+  box-shadow: 0 0 0 4px rgba(74, 222, 128, 0.12);
+}
+
+
+/* =========================================================
+   MAIN
+   ========================================================= */
+
+main {
+  width: 100%;
+  max-width: var(--max-width);
+
+  margin: 0 auto;
+
+  padding: 32px 20px 68px;
+}
+
+
+/* =========================================================
+   SECTIONS / CARDS
+   ========================================================= */
+
+section {
+  margin-bottom: 18px;
+  padding: 24px;
+
+  background: var(--surface);
+
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(12px);
+}
+
+#controls {
+  padding: 22px;
+}
+
+.data-tools {
+  background: rgba(255, 255, 255, 0.75);
+  box-shadow: none;
+}
+
+
+/* =========================================================
+   SECTION HEADINGS
+   ========================================================= */
+
+.section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 16px;
+
+  margin-bottom: 18px;
+}
+
+.section-heading h2 {
+  margin: 4px 0 0;
+
+  color: var(--ink);
+
+  font-size: 1.18rem;
+  line-height: 1.25;
+
+  letter-spacing: -0.015em;
+}
+
+
+/* =========================================================
+   PAGE SYSTEM
+   ========================================================= */
+
+.page {
+  display: none;
+}
+
+.page.active {
+  display: block;
+}
+
+
+/* =========================================================
+   NAVIGATION
+   ========================================================= */
+
+#pagesNav {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+
+  margin-bottom: 18px;
+  padding: 0;
+
+  background: transparent;
+
+  border: 0;
+  box-shadow: none;
+
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+#pagesNav::-webkit-scrollbar {
+  display: none;
+}
+
+#roundLinks {
+  display: flex;
+  gap: 7px;
+}
+
+.saved-tournaments-section {
+  margin-bottom: 18px;
+}
+
+.saved-tournaments {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+}
+
+.tournament-card {
+  display: flex;
+  align-items: stretch;
+  gap: 8px;
+
+  padding: 10px 10px 10px 12px;
+
+  color: var(--ink);
+  background: var(--surface-soft);
+
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+
+  box-shadow: var(--shadow-sm);
+}
+
+.tournament-card:hover {
+  background: #fff;
+  border-color: #d4dce4;
+}
+
+.tournament-card.active {
+  background: #eaf2ff;
+  border-color: #8bb9ff;
+  box-shadow: 0 0 0 1px rgba(90, 140, 255, 0.15);
+}
+
+.tournament-card-select {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+
+  padding: 4px 0;
+
+  color: var(--ink);
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+.tournament-card-select:hover {
+  background: transparent;
+}
+
+.tournament-card-name {
+  font-size: 0.96rem;
+  font-weight: 700;
+}
+
+.tournament-card-code {
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.tournament-card-meta {
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.tournament-card-remove {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 36px;
+  min-height: 36px;
+  padding: 0;
+
+  color: var(--danger);
+  background: #fff;
+
+  border: 1px solid #f2c7c7;
+  border-radius: 8px;
+
+  font-size: 1.1rem;
+  font-weight: 700;
+
+  box-shadow: none;
+}
+
+.tournament-card-remove:hover {
+  background: var(--danger-soft);
+  border-color: #e8a9a9;
+}
+
+.empty-tournaments {
+  padding: 18px;
+
+  color: var(--muted);
+  background: var(--surface-soft);
+
+  border: 1px dashed var(--line);
+  border-radius: var(--radius-sm);
+}
+
+#pagesNav button {
+  flex: 0 0 auto;
+
+  padding: 9px 13px;
+
+  color: var(--muted);
+  background: var(--surface);
+
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+
+  box-shadow: var(--shadow-sm);
+
+  font-size: 0.84rem;
+  font-weight: 650;
+
+  transition:
+    background 0.15s ease,
+    color 0.15s ease,
+    border-color 0.15s ease,
+    transform 0.15s ease;
+}
+
+#pagesNav button:hover {
+  color: var(--accent);
+  background: var(--accent-soft);
+  border-color: #bfdbfe;
+
+  transform: none;
+}
+
+#pagesNav button.active {
+  color: #fff;
+  background: var(--accent);
+  border-color: var(--accent);
+
+  box-shadow: 0 2px 5px rgba(37, 99, 235, 0.18);
+}
+
+
+/* =========================================================
+   CONTROLS
+   ========================================================= */
+
+.control-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+
+  flex-wrap: wrap;
+}
+
+.control-row label {
+  flex: 1 1 320px;
+}
+
+label {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 6px;
+
+  margin: 0;
+
+  color: var(--ink-soft);
+
+  font-size: 0.82rem;
+  font-weight: 650;
+}
+
+select option {
+  color: var(--ink);
+}
+
+select option[value=""] {
+  color: var(--muted);
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+
+  margin: 0;
+  padding: 10px 12px;
+
+  color: var(--ink);
+  background: #fff;
+
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-sm);
+
+  font: inherit;
+  font-size: 0.9rem;
+
+  outline: none;
+
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease,
+    background 0.15s ease;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #9aa6b2;
+}
+
+input:hover,
+select:hover,
+textarea:hover {
+  border-color: #bdc7d1;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--accent);
+
+  box-shadow:
+    0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+
+  min-height: 40px;
+
+  padding: 9px 14px;
+
+  color: #fff;
+  background: var(--accent);
+
+  border: 1px solid var(--accent);
+  border-radius: var(--radius-sm);
+
+  cursor: pointer;
+
+  font: inherit;
+  font-size: 0.86rem;
+  font-weight: 650;
+
+  white-space: nowrap;
+
+  box-shadow: var(--shadow-sm);
+
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease,
+    box-shadow 0.15s ease,
+    transform 0.15s ease;
+}
+
+button:hover {
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 3px 8px rgba(37, 99, 235, 0.18);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+button:focus-visible {
+  outline: 3px solid rgba(37, 99, 235, 0.2);
+  outline-offset: 2px;
+}
+
+button[disabled] {
+  opacity: 0.5;
+
+  cursor: not-allowed;
+
+  transform: none;
+  box-shadow: none;
+}
+
+.button-secondary {
+  color: var(--ink-soft);
+
+  background: #fff;
+
+  border-color: var(--line-strong);
+}
+
+.button-secondary:hover {
+  color: var(--ink);
+
+  background: #f8fafc;
+
+  border-color: #bdc7d1;
+
+  box-shadow: var(--shadow-sm);
+}
+
+
+/* =========================================================
+   CHIPS / BADGES
+   ========================================================= */
+
+.status-chip,
+.section-note {
+  display: inline-flex;
+  align-items: center;
+
+  min-height: 27px;
+
+  padding: 5px 9px;
+
+  color: var(--accent);
+
+  background: var(--accent-soft);
+
+  border: 1px solid #dbeafe;
+  border-radius: 999px;
+
+  font-size: 0.72rem;
+  font-weight: 750;
+
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   PARTICIPANTS
+   ========================================================= */
+
+.participant {
+  margin: 10px 0;
+  padding: 16px;
+
+  background: var(--surface-soft);
+
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease,
+    background 0.15s ease;
+}
+
+.participant:hover {
+  background: #fff;
+
+  border-color: #d4dce4;
+
+  box-shadow: var(--shadow-sm);
+}
+
+.participant strong {
+  display: block;
+
+  color: var(--ink);
+
+  font-size: 0.98rem;
+}
+
+.participant > div {
+  margin-top: 10px;
+}
+
+
+/* =========================================================
+   DECK SELECT
+   ========================================================= */
+
+.deck-select {
+  width: 240px;
+
+  margin-right: 7px;
+
+  color: #fff;
+  background-color: #172536;
+  background-image: linear-gradient(115deg, rgba(255,255,255,.18), transparent 34%, rgba(255,255,255,.05));
+  border-color: rgba(255,255,255,.28);
+  box-shadow: 0 5px 14px rgba(15, 23, 42, .12), inset 0 1px rgba(255,255,255,.16);
+  font-family: "Astralia Deck", "Trebuchet MS", sans-serif;
+  font-size: .96rem;
+  font-weight: 700;
+  letter-spacing: .015em;
+  transition: background .2s ease, box-shadow .2s ease, transform .2s ease;
+}
+
+.deck-select:hover {
+  box-shadow: 0 8px 18px rgba(15, 23, 42, .18), inset 0 1px rgba(255,255,255,.2);
+  transform: translateY(-1px);
+}
+
+.deck-select option {
+  color: #172536;
+  background: #fff;
+  font-family: "Astralia Deck", "Trebuchet MS", sans-serif;
+  font-weight: 700;
+}
+
+.deck-slots {
+  display: flex;
+  gap: 7px;
+  flex-wrap: wrap;
+}
+
+.deck-slot {
+  display: inline-flex;
+  align-items: center;
+}
+
+.deck-remove {
+  min-width: 30px;
+  min-height: 38px;
+  padding: 4px 8px;
+  color: var(--muted);
+  background: transparent;
+  border: 1px solid var(--line-strong);
+  border-left: 0;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+.deck-slot .deck-select {
+  margin-right: 0;
+  border-radius: var(--radius-sm) 0 0 var(--radius-sm);
+}
+
+.deck-color-verde {
+  color: #fff;
+  background-image: linear-gradient(115deg, #0f766e 0%, #22c55e 52%, #bef264 140%);
+  border-color: #34d399;
+}
+
+.deck-color-rosso {
+  color: #fff;
+  background-image: linear-gradient(115deg, #7f1d1d 0%, #dc2626 55%, #fb7185 140%);
+  border-color: #fb7185;
+}
+
+.deck-color-blu {
+  color: #fff;
+  background-image: linear-gradient(115deg, #172554 0%, #2563eb 52%, #67e8f9 145%);
+  border-color: #38bdf8;
+}
+
+.deck-color-rosa {
+  color: #fff;
+  background-image: linear-gradient(115deg, #831843 0%, #db2777 52%, #f9a8d4 145%);
+  border-color: #f472b6;
+}
+
+.deck-color-viola {
+  color: #fff;
+  background-image: linear-gradient(115deg, #3b0764 0%, #7e22ce 52%, #c084fc 145%);
+  border-color: #c084fc;
+}
+
+
+/* =========================================================
+   MATCHES
+   ========================================================= */
+
+.match {
+  margin: 12px 0;
+  padding: 17px;
+
+  background: var(--surface-soft);
+
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+
+  box-shadow: none;
+}
+
+.match-heading {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  margin-bottom: 14px;
+
+  color: var(--ink);
+
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.match-heading span {
+  color: var(--muted);
+
+  font-weight: 500;
+}
+
+
+/* =========================================================
+   BANS
+   ========================================================= */
+
+.ban-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 10px;
+}
+
+.ban-control {
+  padding: 12px;
+
+  color: var(--danger);
+
+  background: var(--danger-soft);
+
+  border: 1px solid #f3cccc;
+  border-radius: var(--radius-sm);
+}
+
+
+/* =========================================================
+   ROUNDS
+   ========================================================= */
+
+.round-group {
+  margin: 10px 0;
+  padding: 12px;
+
+  background: #fff;
+
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+}
+
+.round-group h3 {
+  margin: 0 0 8px;
+
+  color: var(--ink);
+
+  font-size: 0.95rem;
+}
+
+
+/* =========================================================
+   GAMES
+   ========================================================= */
+
+.game-row {
+  display: grid;
+
+  grid-template-columns:
+    auto repeat(3, minmax(130px, 1fr));
+
+  gap: 12px;
+
+  align-items: end;
+
+  padding: 14px 0;
+
+  border-top: 1px solid var(--line);
+}
+
+.game-row strong {
+  padding-bottom: 10px;
+
+  color: var(--ink-soft);
+
+  font-size: 0.85rem;
+}
+
+.game-row label {
+  margin: 0;
+}
+
+
+/* =========================================================
+   DATA TOOLS
+   ========================================================= */
+
+.data-actions {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  flex-wrap: wrap;
+}
+
+.file-picker {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+
+  gap: 8px;
+
+  min-height: 40px;
+
+  padding: 8px 12px;
+
+  color: var(--ink-soft);
+  background: #fff;
+
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-sm);
+
+  cursor: pointer;
+
+  font-size: 0.84rem;
+  font-weight: 650;
+
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.file-picker:hover {
+  background: #f8fafc;
+
+  border-color: #bdc7d1;
+}
+
+.file-picker input {
+  width: auto;
+
+  padding: 0;
+
+  border: 0;
+
+  font-size: 0.78rem;
+
+  box-shadow: none;
+}
+
+
+/* =========================================================
+   UTILITY
+   ========================================================= */
+
+.small {
+  color: var(--muted);
+
+  font-size: 0.86rem;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 760px) {
+
+  header {
+    padding: 22px 18px;
+  }
+
+  .header-inner {
+    display: block;
+  }
+
+  .live-mark {
+    display: inline-flex;
+
+    margin-top: 15px;
+  }
+
+  main {
+    padding: 18px 12px 40px;
+  }
+
+  section {
+    padding: 17px;
+
+    border-radius: 11px;
+  }
+
+  #controls {
+    padding: 17px;
+  }
+
+  .section-heading {
+    align-items: flex-start;
+
+    margin-bottom: 15px;
+  }
+
+  .section-note,
+  .status-chip {
+    white-space: normal;
+    text-align: center;
+  }
+
+  .control-row {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .control-row label {
+    flex-basis: auto;
+  }
+
+  .control-row button {
+    width: 100%;
+  }
+
+  #pagesNav {
+    margin-left: -2px;
+    margin-right: -2px;
+  }
+
+  .ban-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .game-row {
+    grid-template-columns: 1fr;
+
+    gap: 9px;
+  }
+
+  .game-row strong {
+    padding-bottom: 0;
+  }
+
+  .deck-select {
+    width: 100%;
+
+    margin: 0 0 8px;
+  }
+
+  .participant {
+    padding: 14px;
+  }
+
+  .data-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .data-actions button,
+  .file-picker {
+    width: 100%;
+  }
+
+  .file-picker {
+    justify-content: space-between;
+  }
+
+  .file-picker input {
+    max-width: 60%;
+  }
+}
+
+
+@media (max-width: 420px) {
+
+  header h1 {
+    font-size: 1.45rem;
+  }
+
+  .header-subtitle {
+    font-size: 0.84rem;
+  }
+
+  .section-heading {
+    display: block;
+  }
+
+  .section-heading .status-chip,
+  .section-heading .section-note {
+    margin-top: 10px;
+  }
+
+  .match {
+    padding: 14px;
+  }
+}
+
+
+/* =========================================================
+   ASTRALIA VISUAL SYSTEM
+   ========================================================= */
+
+section h2,
+section h3,
+.tournament-card-name,
+.match-heading,
+.round-page > h3 {
+  font-family: "Astralia Deck", "Trebuchet MS", sans-serif;
+  letter-spacing: 0.02em;
+}
+
+.section-heading h2 {
+  color: #f8fbff;
+  font-size: 1.3rem;
+}
+
+.section-heading h2::after {
+  display: block;
+  width: 42px;
+  height: 3px;
+  margin-top: 7px;
+  content: "";
+  background: linear-gradient(90deg, #38bdf8, #a855f7);
+  border-radius: 99px;
+}
+
+#controls,
+.data-tools {
+  background:
+    linear-gradient(135deg, rgba(18, 45, 73, 0.96), rgba(10, 25, 45, 0.92)),
+    var(--surface);
+}
+
+.data-tools {
+  border-color: rgba(168, 85, 247, 0.24);
+}
+
+.status-chip,
+.section-note {
+  color: #bdefff;
+  background: linear-gradient(120deg, rgba(14, 165, 233, 0.2), rgba(168, 85, 247, 0.16));
+  border-color: rgba(125, 211, 252, 0.3);
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.12);
+}
+
+input,
+select,
+textarea {
+  color: var(--ink);
+  background: rgba(6, 18, 33, 0.78);
+  border-color: var(--line-strong);
+}
+
+input::placeholder,
+textarea::placeholder,
+select option[value=""] {
+  color: #71849e;
+}
+
+input:hover,
+select:hover,
+textarea:hover {
+  border-color: rgba(125, 211, 252, 0.58);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.15), 0 8px 18px rgba(0, 0, 0, 0.16);
+}
+
+button {
+  background: linear-gradient(120deg, #0284c7, #2563eb 58%, #7e22ce);
+  border-color: rgba(125, 211, 252, 0.48);
+  box-shadow: 0 8px 18px rgba(14, 116, 144, 0.22), inset 0 1px rgba(255, 255, 255, 0.22);
+  font-family: "Astralia Deck", "Trebuchet MS", sans-serif;
+  letter-spacing: 0.015em;
+}
+
+button:hover {
+  background: linear-gradient(120deg, #0ea5e9, #2563eb 58%, #9333ea);
+  border-color: #7dd3fc;
+  box-shadow: 0 12px 24px rgba(14, 116, 144, 0.3), inset 0 1px rgba(255, 255, 255, 0.26);
+}
+
+.button-secondary,
+.file-picker {
+  color: #c9d7e8;
+  background: rgba(255, 255, 255, 0.04);
+  border-color: var(--line-strong);
+}
+
+.button-secondary:hover,
+.file-picker:hover {
+  color: #fff;
+  background: rgba(56, 189, 248, 0.12);
+  border-color: rgba(125, 211, 252, 0.55);
+}
+
+#pagesNav button {
+  color: #91a5bf;
+  background: rgba(12, 28, 48, 0.82);
+  border-color: var(--line);
+  box-shadow: var(--shadow-sm);
+  font-family: "Astralia Deck", "Trebuchet MS", sans-serif;
+  letter-spacing: 0.03em;
+}
+
+#pagesNav button:hover {
+  color: #dff7ff;
+  background: rgba(14, 116, 144, 0.3);
+  border-color: rgba(56, 189, 248, 0.45);
+}
+
+#pagesNav button.active {
+  color: #fff;
+  background: linear-gradient(120deg, #0369a1, #2563eb 58%, #7e22ce);
+  border-color: #38bdf8;
+  box-shadow: 0 7px 18px rgba(37, 99, 235, 0.3), inset 0 1px rgba(255, 255, 255, 0.2);
+}
+
+.tournament-card,
+.participant,
+.match {
+  background:
+    linear-gradient(135deg, rgba(24, 48, 75, 0.82), rgba(10, 25, 44, 0.88)),
+    var(--surface-soft);
+  border-color: var(--line);
+}
+
+.tournament-card:hover,
+.participant:hover,
+.match:hover {
+  background:
+    linear-gradient(135deg, rgba(29, 61, 92, 0.92), rgba(11, 28, 49, 0.94)),
+    var(--surface-soft);
+  border-color: rgba(125, 211, 252, 0.38);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.2);
+}
+
+.tournament-card.active {
+  background: linear-gradient(135deg, rgba(3, 105, 161, 0.34), rgba(126, 34, 206, 0.22));
+  border-color: rgba(56, 189, 248, 0.72);
+  box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.2), 0 12px 28px rgba(14, 116, 144, 0.2);
+}
+
+.tournament-card-select,
+.tournament-card-name,
+.match-heading,
+.participant strong {
+  color: #f2f7ff;
+}
+
+.tournament-card-code,
+.tournament-card-meta,
+.small {
+  color: #8fa4be;
+}
+
+.tournament-card-remove {
+  color: #fda4af;
+  background: rgba(127, 29, 29, 0.22);
+  border-color: rgba(251, 113, 133, 0.35);
+}
+
+.tournament-card-remove:hover,
+.deck-remove:hover {
+  color: #fff;
+  background: rgba(225, 29, 72, 0.36);
+  border-color: rgba(251, 113, 133, 0.7);
+}
+
+.empty-tournaments {
+  color: #8fa4be;
+  background: rgba(10, 25, 44, 0.54);
+  border-color: rgba(125, 211, 252, 0.25);
+}
+
+.ban-control {
+  color: #fecdd3;
+  background: linear-gradient(135deg, rgba(127, 29, 29, 0.28), rgba(30, 20, 42, 0.4));
+  border-color: rgba(251, 113, 133, 0.3);
+}
+
+.round-page > h3 {
+  color: #dff7ff;
+  font-size: 1.35rem;
+}
+
+.game-row {
+  border-color: var(--line);
+}
+
+.game-row strong {
+  color: #b6c9df;
+}
+
+.deck-remove {
+  color: #9db1c8;
+  background: rgba(10, 25, 44, 0.88);
+  border-color: var(--line-strong);
+}
+
+@media (max-width: 760px) {
+  section {
+    padding: 18px;
+    border-radius: var(--radius);
+  }
+
+  header {
+    padding: 28px 18px 32px;
+  }
+
+  main {
+    padding: 20px 12px 46px;
+  }
+
+  .deck-slots {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .deck-slot,
+  .deck-slot .deck-select {
+    width: 100%;
+  }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+  }
+}
