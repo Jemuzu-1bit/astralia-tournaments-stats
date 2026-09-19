@@ -795,6 +795,15 @@ button[disabled] {
   font-weight: 500;
 }
 
+.bye-match {
+  background: linear-gradient(135deg, rgba(21, 78, 58, 0.5), rgba(10, 25, 44, 0.88));
+  border-color: rgba(74, 222, 128, 0.32);
+}
+
+.bye-match .match-heading span {
+  color: #86efac;
+}
+
 
 /* =========================================================
    BANS

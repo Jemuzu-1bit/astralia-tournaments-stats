@@ -12,8 +12,10 @@ Dashboard locale per gestire tornei Astralia Chronicles: partecipanti, mazzi, ba
 - Selezione dei mazzi bannati per match.
 - Registrazione dei mazzi usati e dei vincitori delle singole partite.
 - Calcolo del vincitore del turno e supporto alla terza partita quando il risultato e 1-1.
+- Gestione automatica dei bye nei turni con un numero dispari di partecipanti.
 - Salvataggio automatico nel `localStorage` del browser.
 - Importazione ed esportazione dei dati del torneo in formato JSON.
+- Esportazione Excel `.xlsx` pulita con esattamente i fogli `Giocatori`, `Match` e `Partite`, senza ID o dati tecnici.
 
 ## Avvio
 
@@ -48,6 +50,7 @@ La chiave API viene letta dal backend in `server.js` e non viene mai richiesta o
 4. Scegli i mazzi usati nelle partite e il vincitore.
 5. Clicca **Salva risultato** per validare il turno.
 6. Usa gli strumenti JSON per creare un backup o ripristinare i dati.
+7. Usa **Esporta Excel** per creare un report `.xlsx` leggibile in Excel.
 
 ## File principali
 

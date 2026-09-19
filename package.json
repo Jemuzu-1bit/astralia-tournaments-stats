@@ -22,5 +22,8 @@
   "devDependencies": {
     "dotenv": "^16.4.7",
     "http-server": "^14.1.1"
+  },
+  "dependencies": {
+    "xlsx": "^0.18.5"
   }
 }

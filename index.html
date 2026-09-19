@@ -68,10 +68,11 @@
           <p class="eyebrow">BACKUP</p>
           <h2>Dati torneo</h2>
         </div>
-        <span class="section-note">JSON</span>
+        <span class="section-note">JSON + XLSX</span>
       </div>
       <div class="data-actions">
         <button id="exportBtn"><span aria-hidden="true">↓</span> Esporta JSON</button>
+        <button id="exportExcelBtn"><span aria-hidden="true">▦</span> Esporta Excel</button>
         <label class="file-picker">Importa JSON <input type="file" id="importFile" accept="application/json,.json" /></label>
         <button id="deleteSelectedTournamentBtn" class="button-secondary"><span aria-hidden="true">×</span> Elimina torneo selezionato</button>
         <button id="clearLocalBtn" class="button-secondary"><span aria-hidden="true">✕</span> Rimuovi tutti i dati</button>
@@ -79,6 +80,7 @@
     </section>
   </main>
 
-  <script src="app.js?v=12"></script>
+  <script src="node_modules/xlsx/dist/xlsx.full.min.js"></script>
+  <script src="app.js?v=15"></script>
 </body>
 </html>
