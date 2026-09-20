@@ -379,6 +379,27 @@ section {
   box-shadow: none;
 }
 
+.tournament-card-refresh {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 36px;
+  min-height: 36px;
+  padding: 0;
+
+  color: var(--accent);
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: none;
+}
+
+.tournament-card-refresh:hover {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+}
+
 .tournament-card-remove:hover {
   background: var(--danger-soft);
   border-color: #e8a9a9;

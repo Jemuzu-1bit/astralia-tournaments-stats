@@ -22,13 +22,37 @@ function sendJson(res, status, body){
   res.end(JSON.stringify(body));
 }
 
+function normalizeTournamentSlug(value){
+  const input = String(value || '').trim();
+  if(!input) return '';
+
+  try{
+    const candidate = /^https?:\/\//i.test(input) ? input : `https://${input}`;
+    const parsed = new URL(candidate);
+    if(parsed.hostname.toLowerCase().includes('challonge.com')){
+      const segments = parsed.pathname.split('/').filter(Boolean);
+      return decodeURIComponent(segments[segments.length - 1] || '');
+    }
+  }catch(error){
+    // Treat non-URL values as regular Challonge slugs.
+  }
+
+  return input.replace(/^\/+|\/+$/g, '');
+}
+
 async function proxyChallonge(res, slug, resource){
   if(!CHALLONGE_API_KEY){
     sendJson(res, 500, { error: 'CHALLONGE_API_KEY non configurata nel file .env.local' });
     return;
   }
 
-  const basePath = `${CHALLONGE_API_BASE}/tournaments/${encodeURIComponent(slug)}`;
+  const normalizedSlug = normalizeTournamentSlug(slug);
+  if(!normalizedSlug){
+    sendJson(res, 400, { error: 'Codice torneo non valido' });
+    return;
+  }
+
+  const basePath = `${CHALLONGE_API_BASE}/tournaments/${encodeURIComponent(normalizedSlug)}`;
   const url = resource === 'tournament'
     ? `${basePath}.json?api_key=${encodeURIComponent(CHALLONGE_API_KEY)}`
     : `${basePath}/${resource}.json?api_key=${encodeURIComponent(CHALLONGE_API_KEY)}`;
