@@ -850,6 +850,85 @@ button[disabled] {
   border-radius: var(--radius-sm);
 }
 
+.match-flags {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  margin: 12px 0 14px;
+}
+
+.match-flags label {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+
+  min-height: 38px;
+  padding: 8px 11px;
+
+  color: var(--ink-soft);
+  background: rgba(6, 18, 33, 0.52);
+
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+
+  cursor: pointer;
+  font-size: 0.82rem;
+  transition: border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
+}
+
+.match-flags label:hover {
+  color: var(--ink);
+  background: var(--accent-soft);
+  border-color: rgba(56, 189, 248, 0.45);
+}
+
+.match-flags input[type="checkbox"] {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  padding: 0;
+
+  flex: 0 0 16px;
+  background: rgba(6, 18, 33, 0.82);
+  border: 1px solid var(--line-strong);
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.match-flags input[type="checkbox"]:checked {
+  background-color: var(--accent);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='m3.2 8.2 3 3 6.6-6.6' fill='none' stroke='%2307111f' stroke-linecap='round' stroke-linejoin='round' stroke-width='2.2'/%3E%3C/svg%3E");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 13px;
+  border-color: var(--accent);
+}
+
+.match-flags input[type="checkbox"]:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.22);
+}
+
+.turn-winner-control {
+  max-width: 360px;
+  margin: 12px 0 14px;
+  padding: 12px;
+
+  color: var(--success);
+  background: var(--success-soft);
+
+  border: 1px solid rgba(74, 222, 128, 0.3);
+  border-radius: var(--radius-sm);
+}
+
+.turn-winner-control[hidden] {
+  display: none;
+}
+
 
 /* =========================================================
    ROUNDS
@@ -1042,6 +1121,17 @@ button[disabled] {
 
   .ban-grid {
     grid-template-columns: 1fr;
+  }
+
+  .match-flags {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .match-flags label,
+  .turn-winner-control {
+    width: 100%;
+    max-width: none;
   }
 
   .game-row {

@@ -409,6 +409,8 @@ function renderMatches(){
       `<p class="small">Dopo i ban restano 2 mazzi per giocatore. Il vincitore del turno deve aver vinto con entrambi.</p>`+
       `<p class="turn-status small">Turno non ancora deciso</p>`+
       `<div class="games"></div>`+
+      `<div class="match-flags"><label><input type="checkbox" class="match-draw" ${m.draw ? 'checked' : ''}> Pareggio</label><label><input type="checkbox" class="match-timed-out" ${m.timed_out ? 'checked' : ''}> Finito per tempo</label></div>`+
+      `<label class="turn-winner-control" ${m.timed_out ? '' : 'hidden'}>Vincitore del turno: <select class="turn-winner"><option value="">--Scegli vincitore--</option><option value="p1" ${m.turn_winner === 'p1' ? 'selected' : ''}>${p1.name}</option><option value="p2" ${m.turn_winner === 'p2' ? 'selected' : ''}>${p2.name}</option></select></label>`+
       `<button type="button" data-save="${m.id}">Salva risultato</button>`;
     roundSection.appendChild(div);
 
@@ -434,6 +436,35 @@ function renderMatches(){
           setDeckColor(s, val);
           renderGames(div, m, p1, p2, p1decks, p2decks);
       });
+    });
+
+    const drawFlag = div.querySelector('.match-draw');
+    const timedOutFlag = div.querySelector('.match-timed-out');
+    const turnWinnerControl = div.querySelector('.turn-winner-control');
+    const turnWinnerSelect = div.querySelector('.turn-winner');
+    turnWinnerSelect.addEventListener('change', ()=>{
+      m.turn_winner = turnWinnerSelect.value || null;
+      saveLocal();
+      renderGames(div, m, p1, p2, p1decks, p2decks);
+    });
+    drawFlag.addEventListener('change', ()=>{
+      m.draw = drawFlag.checked;
+      if(m.draw) m.timed_out = false;
+      if(m.draw) m.turn_winner = null;
+      turnWinnerControl.hidden = !m.timed_out;
+      timedOutFlag.checked = !!m.timed_out;
+      saveLocal();
+      renderGames(div, m, p1, p2, p1decks, p2decks);
+    });
+    timedOutFlag.addEventListener('change', ()=>{
+      m.timed_out = timedOutFlag.checked;
+      if(m.timed_out) m.draw = false;
+      if(m.timed_out) m.turn_winner = null;
+      if(!m.timed_out) m.turn_winner = null;
+      turnWinnerControl.hidden = !m.timed_out;
+      drawFlag.checked = !!m.draw;
+      saveLocal();
+      renderGames(div, m, p1, p2, p1decks, p2decks);
     });
 
       if(!Array.isArray(m.games) || m.games.length === 0){
@@ -488,7 +519,11 @@ function renderMatches(){
     const result = getTurnWinner(match);
     const status = div.querySelector('.turn-status');
     if(status){
-      if(result) status.textContent = `Turno vinto da ${result === 'p1' ? p1.name : p2.name}`;
+      if(match.draw) status.textContent = 'Turno concluso in pareggio';
+      else if(match.timed_out) status.textContent = match.turn_winner
+        ? `Turno concluso per tempo: vinto da ${match.turn_winner === 'p1' ? p1.name : p2.name}`
+        : 'Turno concluso per tempo: seleziona il vincitore';
+      else if(result) status.textContent = `Turno vinto da ${result === 'p1' ? p1.name : p2.name}`;
       else if(match.games.length === 3) status.textContent = 'Punteggio 1-1: terza partita necessaria';
       else status.textContent = 'Turno non ancora deciso';
     }
@@ -587,9 +622,17 @@ function renderMatches(){
     if(!match.bans || !match.bans.by_p1 || !match.bans.by_p2) return { ok: false, message: 'Seleziona il mazzo bannato da entrambi i giocatori.' };
     syncGamesForScore(match);
     if(match.games.length < 2 || match.games.length > 3) return { ok: false, message: 'Il turno deve contenere almeno 2 e massimo 3 partite.' };
+    const exceptionalEnd = match.draw || match.timed_out;
+    const completedGames = match.games.filter(game=>game.player1_deck && game.player2_deck && game.winner);
+    if(exceptionalEnd && completedGames.length === 0) return { ok: false, message: 'Completa almeno una partita prima di salvare il turno.' };
     for(let index = 0; index < match.games.length; index++){
       const game = match.games[index];
-      if(!game.player1_deck || !game.player2_deck || !game.winner) return { ok: false, message: `Completa la partita ${index + 1}: seleziona entrambi i mazzi e il vincitore.` };
+      const isEmpty = !game.player1_deck && !game.player2_deck && !game.winner;
+      const isComplete = game.player1_deck && game.player2_deck && game.winner;
+      if(!isComplete){
+        if(exceptionalEnd && isEmpty) continue;
+        return { ok: false, message: `Completa la partita ${index + 1}: seleziona entrambi i mazzi e il vincitore.` };
+      }
       if(Number(game.player1_deck) === Number(match.bans.by_p2) || Number(game.player2_deck) === Number(match.bans.by_p1)) return { ok: false, message: `La partita ${index + 1} usa un mazzo bannato.` };
       const previousP1Wins = new Set(match.games.slice(0, index).filter(previous=>previous.winner === 'p1').map(previous=>Number(previous.player1_deck)));
       const previousP2Wins = new Set(match.games.slice(0, index).filter(previous=>previous.winner === 'p2').map(previous=>Number(previous.player2_deck)));
@@ -603,6 +646,8 @@ function renderMatches(){
       }
     }
     const turnWinner = getTurnWinner(match);
+    if(match.timed_out && match.turn_winner !== 'p1' && match.turn_winner !== 'p2') return { ok: false, message: 'Seleziona il vincitore del turno concluso per tempo.' };
+    if(exceptionalEnd) return { ok: true, turnWinner: match.timed_out ? match.turn_winner : null };
     if(match.games.length === 3 && match.games[0].winner === match.games[1].winner) return { ok: false, message: 'La terza partita non è necessaria: un giocatore ha già vinto le prime due.' };
     if(!turnWinner && match.games.length === 2) return { ok: false, message: 'Dopo 2 partite nessun giocatore ha ancora vinto con entrambi i mazzi: aggiungi la terza partita.' };
     if(!turnWinner) return { ok: false, message: 'Nessun giocatore ha vinto con entrambi i mazzi.' };
@@ -790,7 +835,7 @@ function exportExcel(){
       getDeckName(participant.decks?.[2])
     ])
   ];
-  const matchRows = [['Turno', 'Giocatore 1', 'Giocatore 2', 'Ban G1', 'Ban G2', 'Vincitore']];
+  const matchRows = [['Turno', 'Giocatore 1', 'Giocatore 2', 'Ban G1', 'Ban G2', 'Vincitore', 'Pareggio', 'Per tempo']];
   const gameRows = [['Turno', 'Partita', 'Giocatore 1', 'Mazzo G1', 'Giocatore 2', 'Mazzo G2', 'Vincitore', 'Mazzo vincitore']];
   const roundGroups = new Map();
   (state.matches || []).forEach(match=>{
@@ -806,7 +851,9 @@ function exportExcel(){
       const player2 = findParticipantById(match.player2_id) || { name: match.player2_name || '' };
       const bye = isByeMatch(match);
       const matchLabel = bye ? 'BYE' : ++matchNumber;
-      const matchWinner = match.turn_winner === 'p1' ? player1.name : match.turn_winner === 'p2' ? player2.name : bye ? (player1.name || player2.name) : '';
+      const matchWinner = match.draw ? '' : match.timed_out
+        ? (match.turn_winner === 'p1' ? player1.name : match.turn_winner === 'p2' ? player2.name : '')
+        : (match.turn_winner === 'p1' ? player1.name : match.turn_winner === 'p2' ? player2.name : bye ? (player1.name || player2.name) : '');
 
       // by_p2 is the deck banned from player 1; by_p1 is the deck banned from player 2.
       matchRows.push([
@@ -815,7 +862,9 @@ function exportExcel(){
         player2.name || '',
         getDeckName(match.bans?.by_p2),
         getDeckName(match.bans?.by_p1),
-        matchWinner
+        matchWinner,
+        match.draw ? 'Sì' : '',
+        match.timed_out ? 'Sì' : ''
       ]);
       if(isByeMatch(match)){
         return;
@@ -845,7 +894,7 @@ function exportExcel(){
   const matchSheet = XLSX.utils.aoa_to_sheet(matchRows);
   const gamesSheet = XLSX.utils.aoa_to_sheet(gameRows);
   formatExcelSheet(playersSheet, [26, 36, 36, 36]);
-  formatExcelSheet(matchSheet, [10, 26, 26, 38, 38, 26], { winnerColumns: [5] });
+  formatExcelSheet(matchSheet, [10, 26, 26, 38, 38, 26, 14, 14], { winnerColumns: [5] });
   formatExcelSheet(gamesSheet, [10, 12, 26, 36, 26, 36, 26, 36], { winnerColumns: [6, 7] });
 
   XLSX.utils.book_append_sheet(workbook, playersSheet, 'Giocatori');
