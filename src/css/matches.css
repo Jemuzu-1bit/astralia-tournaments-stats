@@ -123,6 +123,8 @@
 }
 
 .turn-winner-control {
+  display: flex;
+  flex-direction: column;
   max-width: 360px;
   margin: 12px 0 14px;
   padding: 12px;
@@ -136,6 +138,10 @@
 
 .turn-winner-control[hidden] {
   display: none;
+}
+
+.turn-winner-control + button {
+  margin-top: 4px;
 }
 
 .round-group {
