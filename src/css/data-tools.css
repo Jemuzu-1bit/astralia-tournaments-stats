@@ -1,0 +1,53 @@
+.data-actions {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  flex-wrap: wrap;
+}
+
+.file-picker {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+
+  gap: 8px;
+
+  min-height: 40px;
+
+  padding: 8px 12px;
+
+  color: var(--ink-soft);
+  background: #fff;
+
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-sm);
+
+  cursor: pointer;
+
+  font-size: 0.84rem;
+  font-weight: 650;
+
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.file-picker:hover {
+  background: #f8fafc;
+
+  border-color: #bdc7d1;
+}
+
+.file-picker input {
+  width: auto;
+
+  padding: 0;
+
+  border: 0;
+
+  font-size: 0.78rem;
+
+  box-shadow: none;
+}

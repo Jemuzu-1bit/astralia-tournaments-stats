@@ -57,8 +57,27 @@ La chiave API viene letta dal backend in `server.js` e non viene mai richiesta o
 ## File principali
 
 - [index.html](index.html): struttura dell'interfaccia.
-- [styles.css](styles.css): sistema visivo Astralia e layout responsive.
-- [app.js](app.js): stato locale, selezioni, validazioni e rendering.
+- [styles.css](styles.css): manifest CSS che importa i fogli modulari.
+- [app.js](app.js): loader sequenziale dei moduli JavaScript.
+- [src/js/state.js](src/js/state.js): stato applicativo e caricamento dei mazzi.
+- [src/js/storage.js](src/js/storage.js): localStorage, importazione dello stato e gestione tornei.
+- [src/js/decks.js](src/js/decks.js): mazzi, colori e vincoli di assegnazione.
+- [src/js/match-data.js](src/js/match-data.js): normalizzazione e merge dei partecipanti e dei match.
+- [src/js/match-rules.js](src/js/match-rules.js): regole pure per bye, partite, vincitori e validazione dei turni.
+- [src/js/tournament-view.js](src/js/tournament-view.js): lista dei tornei salvati.
+- [src/js/participants-view.js](src/js/participants-view.js): gestione della vista partecipanti.
+- [src/js/games-view.js](src/js/games-view.js): rendering e aggiornamento delle singole partite.
+- [src/js/matches-view.js](src/js/matches-view.js): rendering dei turni, ban e flag del risultato.
+- [src/js/challonge.js](src/js/challonge.js): client e sincronizzazione Challonge.
+- [src/js/data-export.js](src/js/data-export.js): export JSON/Excel e import JSON.
+- [src/js/bootstrap.js](src/js/bootstrap.js): avvio dell'interfaccia e listener globali.
+- [src/css/foundation.css](src/css/foundation.css): variabili, reset, header e layout base.
+- [src/css/navigation.css](src/css/navigation.css): navigazione e tornei salvati.
+- [src/css/controls.css](src/css/controls.css): controlli, pulsanti, partecipanti e mazzi.
+- [src/css/matches.css](src/css/matches.css): match, flag, turni e partite.
+- [src/css/data-tools.css](src/css/data-tools.css): strumenti di backup e import.
+- [src/css/responsive.css](src/css/responsive.css): regole responsive.
+- [src/css/visual-system.css](src/css/visual-system.css): override del tema visivo, caricato per ultimo.
 - [decks.json](decks.json): lista dei mazzi e relativi colori.
 - [server.js](server.js): server locale e proxy Challonge.
 - [.env.example](.env.example): modello della configurazione locale.

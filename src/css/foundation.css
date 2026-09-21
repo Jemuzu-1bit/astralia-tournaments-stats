@@ -1,0 +1,226 @@
+:root {
+  --bg: #07111f;
+  --surface: rgba(12, 28, 48, 0.92);
+  --surface-soft: rgba(19, 39, 63, 0.9);
+
+  --ink: #f4f8ff;
+  --ink-soft: #c5d2e3;
+  --muted: #8294ad;
+
+  --line: rgba(151, 185, 224, 0.16);
+  --line-strong: rgba(151, 185, 224, 0.3);
+
+  --accent: #38bdf8;
+  --accent-hover: #0ea5e9;
+  --accent-soft: rgba(56, 189, 248, 0.13);
+
+  --success: #4ade80;
+  --success-soft: rgba(74, 222, 128, 0.12);
+
+  --danger: #fb7185;
+  --danger-soft: rgba(251, 113, 133, 0.12);
+
+  --warning: #facc15;
+  --warning-soft: rgba(250, 204, 21, 0.12);
+
+  --shadow-sm: 0 8px 22px rgba(0, 0, 0, 0.16);
+  --shadow: 0 18px 50px rgba(0, 0, 0, 0.25);
+
+  --radius-sm: 8px;
+  --radius: 12px;
+  --radius-lg: 16px;
+
+  --max-width: 1120px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+
+  font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 8% 0%, rgba(37, 99, 235, 0.22), transparent 28rem),
+    radial-gradient(circle at 92% 18%, rgba(168, 85, 247, 0.16), transparent 25rem),
+    linear-gradient(145deg, #07111f 0%, #0b1b30 48%, #10152b 100%);
+
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+@font-face {
+  font-family: "Astralia Deck";
+  src: local("Rajdhani"), local("Bahnschrift SemiBold");
+  font-weight: 600 800;
+}
+
+header {
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(110deg, rgba(5, 14, 28, 0.96), rgba(16, 44, 75, 0.92)),
+    #0b1b30;
+  color: #fff;
+
+  padding: 34px 24px 38px;
+
+  border-bottom: 1px solid rgba(125, 211, 252, 0.25);
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.25);
+}
+
+header::after {
+  position: absolute;
+  right: -8%;
+  bottom: -70px;
+  width: 46%;
+  height: 150px;
+  content: "";
+  background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.18), transparent);
+  transform: rotate(-8deg);
+}
+
+.header-inner {
+  width: 100%;
+  max-width: var(--max-width);
+
+  margin: 0 auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 24px;
+}
+
+header h1 {
+  margin: 4px 0 6px;
+
+  font-family: "Astralia Deck", "Trebuchet MS", sans-serif;
+  font-size: clamp(1.65rem, 3vw, 2.25rem);
+  line-height: 1.15;
+  letter-spacing: 0.025em;
+}
+
+.header-subtitle {
+  margin: 0;
+
+  color: #b8cae0;
+
+  font-size: 0.92rem;
+}
+
+.eyebrow {
+  margin: 0;
+
+  color: var(--muted);
+
+  font-size: 0.68rem;
+  font-weight: 800;
+
+  letter-spacing: 0.13em;
+  line-height: 1.2;
+}
+
+header .eyebrow {
+  color: #8da7bb;
+}
+
+.live-mark {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 8px 11px;
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+
+  color: #c4d1dc;
+  background: rgba(255, 255, 255, 0.05);
+
+  font-size: 0.78rem;
+  font-weight: 600;
+
+  white-space: nowrap;
+}
+
+.live-mark span {
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+
+  background: #4ade80;
+
+  box-shadow: 0 0 0 4px rgba(74, 222, 128, 0.12);
+}
+
+main {
+  width: 100%;
+  max-width: var(--max-width);
+
+  margin: 0 auto;
+
+  padding: 32px 20px 68px;
+}
+
+section {
+  margin-bottom: 18px;
+  padding: 24px;
+
+  background: var(--surface);
+
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(12px);
+}
+
+#controls {
+  padding: 22px;
+}
+
+.data-tools {
+  background: rgba(255, 255, 255, 0.75);
+  box-shadow: none;
+}
+
+.section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 16px;
+
+  margin-bottom: 18px;
+}
+
+.section-heading h2 {
+  margin: 4px 0 0;
+
+  color: var(--ink);
+
+  font-size: 1.18rem;
+  line-height: 1.25;
+
+  letter-spacing: -0.015em;
+}
+
+.page {
+  display: none;
+}
+
+.page.active {
+  display: block;
+}

@@ -1,0 +1,135 @@
+@media (max-width: 760px) {
+  header {
+    padding: 22px 18px;
+  }
+
+  .header-inner {
+    display: block;
+  }
+
+  .live-mark {
+    display: inline-flex;
+
+    margin-top: 15px;
+  }
+
+  main {
+    padding: 18px 12px 40px;
+  }
+
+  section {
+    padding: 17px;
+
+    border-radius: 11px;
+  }
+
+  #controls {
+    padding: 17px;
+  }
+
+  .section-heading {
+    align-items: flex-start;
+
+    margin-bottom: 15px;
+  }
+
+  .section-note,
+  .status-chip {
+    white-space: normal;
+    text-align: center;
+  }
+
+  .control-row {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .control-row label {
+    flex-basis: auto;
+  }
+
+  .control-row button {
+    width: 100%;
+  }
+
+  #pagesNav {
+    margin-left: -2px;
+    margin-right: -2px;
+  }
+
+  .ban-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .match-flags {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .match-flags label,
+  .turn-winner-control {
+    width: 100%;
+    max-width: none;
+  }
+
+  .game-row {
+    grid-template-columns: 1fr;
+
+    gap: 9px;
+  }
+
+  .game-row strong {
+    padding-bottom: 0;
+  }
+
+  .deck-select {
+    width: 100%;
+
+    margin: 0 0 8px;
+  }
+
+  .participant {
+    padding: 14px;
+  }
+
+  .data-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .data-actions button,
+  .file-picker {
+    width: 100%;
+  }
+
+  .file-picker {
+    justify-content: space-between;
+  }
+
+  .file-picker input {
+    max-width: 60%;
+  }
+}
+
+@media (max-width: 420px) {
+  header h1 {
+    font-size: 1.45rem;
+  }
+
+  .header-subtitle {
+    font-size: 0.84rem;
+  }
+
+  .section-heading {
+    display: block;
+  }
+
+  .section-heading .status-chip,
+  .section-heading .section-note {
+    margin-top: 10px;
+  }
+
+  .match {
+    padding: 14px;
+  }
+}
